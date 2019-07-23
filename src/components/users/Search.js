@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types'
+
 
 class Search extends Component {
     state = {
         text: ''
     }
 
-    // static propTypes = {
-    //     searchUsers: PropTypes.func.isRequired
-    // }
-
-
+    static propTypes = {
+        searchUsers: PropTypes.func.isRequired
+    }
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -21,7 +21,10 @@ class Search extends Component {
         };
     }
 
-    onChange = e => {this.setState({[e.target.name]:e.target.value})};
+    onChange = (e) => {
+        console.log(e.target)
+        console.log(e.target.name, "name", e.target.value, "value")
+        this.setState({[e.target.name]:e.target.value})};
 
     render() {
         const {showClear, clear} = this.props;
@@ -32,10 +35,10 @@ class Search extends Component {
                     <input type="text" name="text" placeholder="Search Users..." value={this.state.text} onChange={this.onChange}/>
                     <input type="submit" value="Search" className="btn btn-dark btn-block" />
                 </form>
-                {showClear && (
-                    <button 
-                        className="btn btn-light btn-block"
-                        onClick={clear}>Clear</button>
+            {showClear && (
+                <button 
+                    className="btn btn-light btn-block"
+                    onClick={clear}>Clear</button>
             )}
         </div>)
     };
